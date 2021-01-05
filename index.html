@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Blackjack</title>
+        <meta name="description" content="Welcome to Blackjack.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="game">
+
+            <h2>Blackjack</h2>
+            <div class="game-options">
+              <div class="allbtn">
+                <button type="button" id="btnStart" class="btn" onclick="startblackjack()">Start</button>
+                <button type="button" class="btn" onclick="hit()">Hit Me</button>
+                <button type="button" class="btn" onclick="stand()">Stand</button>
+                <div class="status" id="status"></div>
+              </div>
+            </div>
+
+            <div class="game-body">
+              <div id="deck" class="deck">
+                  <div id="deckcount">52</div>
+              </div>
+              <div id="players" class="players">
+              </div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
