@@ -131,7 +131,7 @@ function startblackjack(){
   document.getElementById("player" + currentPlayer).classList.add("active");
 }
 
-function end(){
+function win(){
     let score = 0;
 
     for(let i = 0; i < players.length; i++){
@@ -145,7 +145,7 @@ function end(){
     document.getElementById("status").style.display = "inline-block";
 }
 
-function check(){
+function lose(){
     if (players[currentPlayer].Points > 21){
         document.getElementById("status").innerHTML = "You lose.";
         document.getElementById("status").style.display = "inline-block";
@@ -154,11 +154,25 @@ function check(){
     return true;
 }
 
+function checkAce(){
+  let score = 0;
+  let indexOfA = values.indexOf(12);
+  if (score > 21) {
+    indexOfA = 1;
+    score = score - 10;
+  } else if (score < 21) {
+    indexOfA = 11;
+  }
+  return score;
+}
+
+
 function stand(){
-  if (players[currentPlayer].Points < 21){
-      end();
+  if (players[currentPlayer].Points <= 21){
+    win();
   } else {
-    check();
+    checkAce();
+    lose();
   }
 }
 
@@ -168,5 +182,5 @@ function hit(){
     renderCard(card, currentPlayer);
     updatePoints();
     updateDeck();
-    check();
+    lose();
 }
