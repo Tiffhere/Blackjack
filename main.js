@@ -92,6 +92,18 @@ function getPoints(player){
     for(let i = 0; i < players[player].Hand.length; i++){
         points += players[player].Hand[i].Weight;
     }
+
+    if (points > 21) {
+      for(let i = 0; i < players[player].Hand.length; i++){
+        if (points > 21) {
+          if (players[player].Hand[i].Weight === 11) {
+            players[player].Hand[i].Weight = 1;
+            points -= 10;
+          }
+        }
+      }
+    }
+
     players[player].Points = points;
     return points;
 }
@@ -154,33 +166,20 @@ function lose(){
     return true;
 }
 
-function checkAce(){
-  let score = 0;
-  let indexOfA = values.indexOf(12);
-  if (score > 21) {
-    indexOfA = 1;
-    score = score - 10;
-  } else if (score < 21) {
-    indexOfA = 11;
-  }
-  return score;
-}
-
 
 function stand(){
   if (players[currentPlayer].Points <= 21){
     win();
   } else {
-    checkAce();
     lose();
   }
 }
 
 function hit(){
   let card = deck.pop();
-    players[currentPlayer].Hand.push(card);
-    renderCard(card, currentPlayer);
-    updatePoints();
-    updateDeck();
-    lose();
+  players[currentPlayer].Hand.push(card);
+  renderCard(card, currentPlayer);
+  updatePoints();
+  updateDeck();
+  lose();
 }
